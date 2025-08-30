@@ -3,49 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>單檔網頁 - Step 3</title>
+  <title>測試</title>
   
-  <!-- Step 2：CSS 樣式 -->
   <style>
     body {
-      font-family: Arial, sans-serif; /* 字體 */
-      text-align: center; /* 文字置中 */
-      margin-top: 50px; /* 上方留白 */
-      background-color: #f0f0f0; /* 背景顏色 */
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f0f0f0;
     }
 
     h1 {
-      color: #333; /* 標題顏色 */
+      color: #333;
     }
 
     button {
-      padding: 10px 20px; /* 內距：讓按鈕變大 */
-      font-size: 16px; /* 字體大小 */
-      cursor: pointer; /* 滑鼠移過去變手指 */
-      border-radius: 8px; /* 圓角 */
-      border: none; /* 移除外框 */
-      background-color: #4CAF50; /* 綠色背景 */
-      color: white; /* 白色字 */
+      padding: 20px 40px; /* 適中大小 */
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      margin: 10px; /* 按鈕間距 */
     }
 
     button:hover {
-      background-color: #45a049; /* 滑鼠移過去變深綠 */
+      background-color: #45a049;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 80%;
+      border-radius: 10px;
+      display: none; /* 預設不顯示 */
     }
   </style>
 </head>
 <body>
-  <h1>你好，網頁！</h1>
-  <p>這是 Step 3：加上 JavaScript 互動。</p>
-  <button id="clickMe">點我一下</button>
+  <h1>測試</h1>
+  <p>這是測試</p>
+  <button id="clickMe">G</button>
+  <button id="PIG">PIG</button>
 
-  <!-- Step 3：加入 JS 互動程式 -->
+  <!-- 顯示圖片的地方 -->
+  <div>
+    <img id="pigImage" src="img/pig.jpg" alt="小豬">
+  </div>
+
   <script>
-    // 先抓到按鈕
-    const button = document.getElementById('clickMe');
+    // G 按鈕
+    const buttonG = document.getElementById('clickMe');
+    buttonG.addEventListener('click', () => {
+      alert(':)');
+    });
 
-    // 監聽點擊事件
-    button.addEventListener('click', () => {
-      alert('你點了我！🎉');
+    // PIG 按鈕
+    const buttonPIG = document.getElementById('PIG');
+    const pigImg = document.getElementById('pigImage');
+
+    buttonPIG.addEventListener('click', () => {
+      // 點擊後顯示圖片
+      pigImg.style.display = 'block';
     });
   </script>
 </body>
