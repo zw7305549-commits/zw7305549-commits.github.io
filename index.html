@@ -56,7 +56,7 @@
     // G 按鈕
     const buttonG = document.getElementById('clickMe');
     buttonG.addEventListener('click', () => {
-      alert(':)');
+      alert('you are a pig:)');
     });
 
     // PIG 按鈕
@@ -64,8 +64,12 @@
     const pigImg = document.getElementById('pigImage');
 
     buttonPIG.addEventListener('click', () => {
-      // 點擊後顯示圖片
-      pigImg.style.display = 'block';
+      // 切換圖片顯示/隱藏
+      if (pigImg.style.display === 'block') {
+        pigImg.style.display = 'none';
+      } else {
+        pigImg.style.display = 'block';
+      }
     });
   </script>
 </body>
