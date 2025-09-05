@@ -10,11 +10,11 @@
       font-family: Arial, sans-serif;
       text-align: center;
       margin-top: 50px;
-      background-color: #0da3e8;
+      background-color: #7d4eec;
     }
 
     h1 {
-      color: #333;
+      color: #fcf8f8;
     }
 
     button {
@@ -23,13 +23,18 @@
       cursor: pointer;
       border-radius: 8px;
       border: none;
-      background-color: #4CAF50;
-      color: rgb(235, 14, 14);
+      background-color: #b82121;
+      color: rgb(254, 254, 254);
       margin: 10px; /* 按鈕間距 */
     }
 
     button:hover {
       background-color: #45a049;
+    }
+
+    /* 新增這段讓圖片外層置中 */
+    div {
+      text-align: center;
     }
 
     img {
@@ -46,6 +51,13 @@
   <p>by烜</p>
   <button id="clickMe">G</button>
   <button id="PIG">PIG</button>
+  <p>還有猜數字遊戲</p>
+  <input type="number" id="guessInput" placeholder="輸入 1~50" />
+  <button id="guessBtn">送出</button>
+  <button id="resetBtn">重置遊戲</button>
+  <button id="showAnswerBtn">看答案</button>
+  <p id="result"></p>
+
 
   <!-- 顯示圖片的地方 -->
   <div>
@@ -71,6 +83,45 @@
         pigImg.style.display = 'block';
       }
     });
+    // 初始化答案
+  let answer = Math.floor(Math.random() * 50) + 1;
+
+  // 抓到元素
+  const guessBtn = document.getElementById('guessBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const showAnswerBtn = document.getElementById('showAnswerBtn');
+  const guessInput = document.getElementById('guessInput');
+  const result = document.getElementById('result');
+
+  // 猜數字事件
+  guessBtn.addEventListener('click', () => {
+    const guess = Number(guessInput.value);
+
+    if (!guess || guess < 1 || guess > 50) {
+      result.textContent = "⚠️ 請輸入 1~50 的數字！";
+      return;
+    }
+
+    if (guess === answer) {
+      result.textContent = "🎉 恭喜答對！答案就是 " + answer;
+    } else if (guess > answer) {
+      result.textContent = "太大了！再試一次！";
+    } else {
+      result.textContent = "太小了！再試一次！";
+    }
+  });
+
+  // 重置遊戲
+  resetBtn.addEventListener('click', () => {
+    answer = Math.floor(Math.random() * 50) + 1; // 重新生成答案
+    guessInput.value = ""; // 清空輸入框
+    result.textContent = "🔄 遊戲已重置，請重新輸入！";
+  });
+
+  // 顯示答案
+  showAnswerBtn.addEventListener('click', () => {
+    result.textContent = "📢 答案是：" + answer;
+  });
   </script>
 </body>
 </html>
