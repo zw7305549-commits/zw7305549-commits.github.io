@@ -10,11 +10,11 @@
       font-family: Arial, sans-serif;
       text-align: center;
       margin-top: 50px;
-      background-color: #7d4eec;
+      background-color: #ecd44e;
     }
 
     h1 {
-      color: #fcf8f8;
+      color: #000000;
     }
 
     button {
@@ -27,10 +27,44 @@
       color: rgb(254, 254, 254);
       margin: 10px; /* 按鈕間距 */
     }
-
+    /* 內文 */
+    .history-section {
+      display: flex;
+      justify-content: center; /* 文字靠中 */ 
+      color: #403f30;
+    }
     button:hover {
       background-color: #45a049;
     }
+    /* 個別樣式 */
+    /* button */
+    /* 歷史 */
+    /* 建議：給按鈕加上 class="history-btn" 並用此選擇器 */
+    .history-btn {
+      font-size: 15px;
+      padding: 25px 25px;
+      background-color: #ff6f00; 
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+    /* 猜數字 */
+    #guessBtn {
+      background-color: #000000;
+      color: white;
+   }
+
+    #resetBtn {
+      background-color: #000000;
+      color: white;
+   }
+
+    #showAnswerBtn {
+      background-color: #000000;
+      color: white;
+   }
 
     /* 新增這段讓圖片外層置中 */
     div {
@@ -43,22 +77,26 @@
       border-radius: 10px;
       display: none; /* 預設不顯示 */
     }
+
+    .img-center {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <h1>測試</h1>
-  <p>這是測試</p>
-  <p>by烜</p>
+  <h1>這是測試by烜</h1>
   <button id="clickMe">G</button>
   <button id="PIG">PIG</button>
   <button id="湯姆瑞斗(匿名)要求新增">湯姆瑞斗(匿名)要求新增</button>
   <p>檔案區</p>
-  <p>歷史(目前)</p>
-  <button onclick="window.location.href='word/🏺 台灣史前時代.docx'">下載台灣史前時代筆記</button>
-  <button onclick="window.location.href='word/🌊 荷西與鄭氏時期.docx'">下載荷西與鄭氏時期筆記</button>
-  <button onclick="window.location.href='word/🏯 清治台灣.docx'">下載清治台灣筆記</button>
-  <button onclick="window.location.href='word/🇯🇵 日治時期.docx'">下載日治時期筆記</button>
-  <button onclick="window.location.href='word/🇹🇼 戰後台灣.docx'">下載戰後台灣筆記</button>
+  <div class="history-section">
+  <p>歷史筆記(目前)</p>
+  </div>
+  <button class="history-btn" onclick="window.location.href='word/🏺 台灣史前時代.docx'">下載台灣史前時代筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🌊 荷西與鄭氏時期.docx'">下載荷西與鄭氏時期筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🏯 清治台灣.docx'">下載清治台灣筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🇯🇵 日治時期.docx'">下載日治時期筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🇹🇼 戰後台灣.docx'">下載戰後台灣筆記</button>
   <p>猜數字遊戲</p>
   <input type="number" id="guessInput" placeholder="輸入 1~50" />
   <button id="guessBtn">送出</button>
@@ -68,7 +106,7 @@
 
 
   <!-- 顯示圖片的地方 -->
-  <div>
+  <div class="img-center">
     <img id="pigImage" src="img/pig.jpg" alt="小豬">
   </div>
 
