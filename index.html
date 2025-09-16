@@ -33,7 +33,12 @@
       justify-content: center; /* 文字靠中 */ 
       color: #403f30;
     }
-    button:hover {
+    .地科 {
+      display: flex;
+      justify-content: center; /* 文字靠中 */ 
+      color: #403f30;
+    }
+      button:hover {
       background-color: #45a049;
     }
     /* 個別樣式 */
@@ -44,6 +49,17 @@
       font-size: 15px;
       padding: 25px 25px;
       background-color: #ff6f00; 
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+    /* 地理 */
+    .地理 {
+      font-size: 15px;
+      padding: 25px 25px;
+      background-color: #039917; 
       color: white;
       border-radius: 5px;
       border: none;
@@ -90,13 +106,18 @@
   <button id="湯姆瑞斗(匿名)要求新增">湯姆瑞斗(匿名)要求新增</button>
   <p>檔案區</p>
   <div class="history-section">
-  <p>歷史筆記(目前)</p>
+  <p>歷史筆記</p>
   </div>
   <button class="history-btn" onclick="window.location.href='word/🏺 台灣史前時代.docx'">下載台灣史前時代筆記</button>
   <button class="history-btn" onclick="window.location.href='word/🌊 荷西與鄭氏時期.docx'">下載荷西與鄭氏時期筆記</button>
   <button class="history-btn" onclick="window.location.href='word/🏯 清治台灣.docx'">下載清治台灣筆記</button>
   <button class="history-btn" onclick="window.location.href='word/🇯🇵 日治時期.docx'">下載日治時期筆記</button>
   <button class="history-btn" onclick="window.location.href='word/🇹🇼 戰後台灣.docx'">下載戰後台灣筆記</button>
+  <div class="地理">
+  <p>地科筆記</p>
+  </div>
+  <button class="地科" onclick="window.location.href='word/地球層圖與水的分布'">下載地球層圖與水的分布筆記</button>
+  <button class="地科" onclick="window.location.href='word/地表作用與地貌變動'">下載地表作用與地貌變動筆記</button>
   <p>猜數字遊戲</p>
   <input type="number" id="guessInput" placeholder="輸入 1~50" />
   <button id="guessBtn">送出</button>
