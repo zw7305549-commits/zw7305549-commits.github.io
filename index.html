@@ -8,219 +8,32 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
+      text-align: left;
       margin-top: 50px;
       background-color: #ecd44e;
     }
-
+   
     h1 {
       color: #000000;
     }
-
-    button {
-      padding: 20px 40px; /* 適中大小 */
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 8px;
-      border: none;
-      background-color: #b82121;
-      color: rgb(254, 254, 254);
-      margin: 10px; /* 按鈕間距 */
-    }
-    /* 內文 */
-    .history-section {
-      display: flex;
-      justify-content: center; /* 文字靠中 */ 
-      color: #403f30;
-    }
-    .地科筆記 {
-      display: flex;
-      justify-content: center; /* 文字靠中 */ 
-      color: #403f30;
-    }
-    .公民 {
-      display: flex;
-      justify-content: center; /* 文字靠中 */ 
-      color: #403f30;
-    }
-      button:hover {
-      background-color: #45a049;
-    }
-    /* 個別樣式 */
-    /* button */
-    /* 歷史 */
-    /* 建議：給按鈕加上 class="history-btn" 並用此選擇器 */
-    .history-btn {
-      font-size: 15px;
-      padding: 25px 25px;
-      background-color: #ff6f00; 
-      color: white;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      margin: 5px;
-    }
-    /* 地科 */
-    .地科 {
-      font-size: 15px;
-      padding: 25px 25px;
-      background-color: #087e01; 
-      color: white;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      margin: 5px;
-    }
-    /* 公民 */
-    .公民筆記 {
-      font-size: 15px;
-      padding: 25px 25px;
-      background-color: #2297f6; 
-      color: white;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      margin: 5px;
-      }
-    /* 猜數字 */
-    #guessBtn {
-      background-color: #000000;
-      color: white;
-   }
-
-    #resetBtn {
-      background-color: #000000;
-      color: white;
-   }
-
-    #showAnswerBtn {
-      background-color: #000000;
-      color: white;
-   }
-
-    /* 新增這段讓圖片外層置中 */
-    div {
-      text-align: center;
-    }
-
-    img {
-      margin-top: 20px;
-      max-width: 80%;
-      border-radius: 10px;
-      display: none; /* 預設不顯示 */
-    }
-
-    .img-center {
-      text-align: center;
-    }
-  </style>
+    body {
+    font-size: 45px;  /* 預設文字大小 */
+  }
+    .plain-link {
+    color: inherit;          /* 跟內文同色 */
+    text-decoration: none;   /* 移除底線 */
+    cursor: pointer;         /* 滑鼠變手指，可提示可點 */
+  }
+   </style>
 </head>
 <body>
-  <h1>這是測試by烜</h1>
-  <button id="clickMe">G</button>
-  <button id="PIG">PIG</button>
-  <button id="湯姆瑞斗(匿名)要求新增">湯姆瑞斗(匿名)要求新增</button>
-  <p>檔案區 如果你真的很閒也可以提供意見或發給我筆記:> 電子信箱是zw7305549@gmail.com 絕對是因為懶得搞上傳筆記而不是還不會:D</p>
-  <div class="history-section">
-  <p>歷史筆記</p>
-  </div>
-  <button class="history-btn" onclick="window.location.href='word/🏺 台灣史前時代.docx'">下載台灣史前時代筆記</button>
-  <button class="history-btn" onclick="window.location.href='word/🌊 荷西與鄭氏時期.docx'">下載荷西與鄭氏時期筆記</button>
-  <button class="history-btn" onclick="window.location.href='word/🏯 清治台灣.docx'">下載清治台灣筆記</button>
-  <button class="history-btn" onclick="window.location.href='word/🇯🇵 日治時期.docx'">下載日治時期筆記</button>
-  <button class="history-btn" onclick="window.location.href='word/🇹🇼 戰後台灣.docx'">下載戰後台灣筆記</button>
-  <button class="history-btn" onclick="window.location.href='word/🏛 商周至隋唐.docx'">下載商周至隋唐筆記</button>
-  <button class="history-btn" onclick="window.location.href='word/🌏 宋元明清.docx'">下載宋元明清筆記</button>
-  <div class="公民">
-  <p>公民筆記</p>
-  </div>
-  <button class="公民筆記" onclick="window.location.href='word/📘 第一章：公民身分、人性尊嚴與性別.docx'">下載公民身分、人性尊嚴與性別筆記</button>
-  <button class="公民筆記" onclick="window.location.href='word/📘 第二章：家庭、學校與部落.docx'">下載家庭、學校與部落筆記</button>
-  <button class="公民筆記" onclick="window.location.href='word/📘 第三章：文化與社會規範、結社.docx'">下載文化與社會規範、結社筆記</button>
-  <button class="公民筆記" onclick="window.location.href='word/📘 第四章：公平主義與社會安全.docx'">下載公平主義與社會安全筆記</button>
-  <div class="地科筆記">
-  <p>地科筆記</p>
-  </div>
-  <button class="地科" onclick="window.location.href='word/地球層圖與水的分布'">下載地球層圖與水的分布筆記</button>
-  <button class="地科" onclick="window.location.href='word/地表作用與地貌變動'">下載地表作用與地貌變動筆記</button>
-  <p>遊戲區</p>
-  <a href="https://zw7305549-commits.github.io/first_game/" target="_blank">前往我製作的新遊戲</a>
-  <p>猜數字遊戲</p>
-  <input type="number" id="guessInput" placeholder="輸入 1~50" />
-  <button id="guessBtn">送出</button>
-  <button id="resetBtn">重置遊戲</button>
-  <button id="showAnswerBtn">看答案</button>
-  <p id="result"></p>
-
-
-  <!-- 顯示圖片的地方 -->
-  <div class="img-center">
-    <img id="pigImage" src="img/pig.jpg" alt="小豬">
-  </div>
-
-  <script>
-    // G 按鈕
-    const buttonG = document.getElementById('clickMe');
-    buttonG.addEventListener('click', () => {
-      alert('you are a pig:)');
-    });
-
-    // PIG 按鈕
-    const buttonPIG = document.getElementById('PIG');
-    const pigImg = document.getElementById('pigImage');
-
-    buttonPIG.addEventListener('click', () => {
-      // 切換圖片顯示/隱藏
-      if (pigImg.style.display === 'block') {
-        pigImg.style.display = 'none';
-      } else {
-        pigImg.style.display = 'block';
-      }
-    });
-    // 湯姆瑞斗(匿名)要求新增 按鈕
-    const buttonTom = document.getElementById('湯姆瑞斗(匿名)要求新增');
-    buttonTom.addEventListener('click', () => {
-      alert('你已經忘記你是gay');
-    });
-    // 初始化答案
-  let answer = Math.floor(Math.random() * 50) + 1;
-
-  // 抓到元素
-  const guessBtn = document.getElementById('guessBtn');
-  const resetBtn = document.getElementById('resetBtn');
-  const showAnswerBtn = document.getElementById('showAnswerBtn');
-  const guessInput = document.getElementById('guessInput');
-  const result = document.getElementById('result');
-
-  // 猜數字事件
-  guessBtn.addEventListener('click', () => {
-    const guess = Number(guessInput.value);
-
-    if (!guess || guess < 1 || guess > 50) {
-      result.textContent = "⚠️ 請輸入 1~50 的數字！";
-      return;
-    }
-
-    if (guess === answer) {
-      result.textContent = "🎉 恭喜答對！答案就是 " + answer;
-    } else if (guess > answer) {
-      result.textContent = "太大了！再試一次！";
-    } else {
-      result.textContent = "太小了！再試一次！";
-    }
-  });
-
-  // 重置遊戲
-  resetBtn.addEventListener('click', () => {
-    answer = Math.floor(Math.random() * 50) + 1; // 重新生成答案
-    guessInput.value = ""; // 清空輸入框
-    result.textContent = "🔄 遊戲已重置，請重新輸入！";
-  });
-
-  // 顯示答案
-  showAnswerBtn.addEventListener('click', () => {
-    result.textContent = "📢 答案是：" + answer;
-  });
-  </script>
+    <h1>這是測試by烜</h1>
+    <ul>
+    <li><a href="try.html" class="plain-link">測試區</a></li>
+    <li><a href="word.html" class="plain-link">筆記下載區</a></li>
+    <li><a href="game.html" class="plain-link">自製遊戲區</a></li>
+    <li><a href="main.html" class="plain-link">原來的樣子(那邊因該不會更新了)</a></li>
+    <li><a href="https://zw7305549-commits.github.io/first_game/" target="_blank"  class="plain-link">前往網頁射擊遊戲遊戲</a></li>
+    </ul>
 </body>
 </html>

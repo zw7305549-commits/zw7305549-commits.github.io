@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>測試</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #ecd44e;
+    }
+
+    h1 {
+      color: #000000;
+    }
+
+    button {
+      padding: 20px 40px; /* 適中大小 */
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      background-color: #b82121;
+      color: rgb(254, 254, 254);
+      margin: 10px; /* 按鈕間距 */
+    }
+    .plain-link {
+    color: inherit;          /* 跟內文同色 */
+    text-decoration: none;   /* 移除底線 */
+    cursor: pointer;         /* 滑鼠變手指，可提示可點 */
+  }
+    /* 內文 */
+    .history-section {
+      display: flex;
+      justify-content: center; /* 文字靠中 */ 
+      color: #403f30;
+    }
+    .地科筆記 {
+      display: flex;
+      justify-content: center; /* 文字靠中 */ 
+      color: #403f30;
+    }
+    .公民 {
+      display: flex;
+      justify-content: center; /* 文字靠中 */ 
+      color: #403f30;
+    }
+      button:hover {
+      background-color: #ecd44e;
+    }
+    /* 個別樣式 */
+    /* button */
+    /* 歷史 */
+    /* 建議：給按鈕加上 class="history-btn" 並用此選擇器 */
+    .history-btn {
+      font-size: 15px;
+      padding: 25px 25px;
+      background-color: #ff6f00; 
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+    /* 地科 */
+    .地科 {
+      font-size: 15px;
+      padding: 25px 25px;
+      background-color: #087e01; 
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+    /* 公民 */
+    .公民筆記 {
+      font-size: 15px;
+      padding: 25px 25px;
+      background-color: #2297f6; 
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+      }
+  </style>
+</head>
+<body>
+  <nav>
+  <a href="index.html" class="plain-link">首頁</a> |
+  <a href="try.html" class="plain-link">測試區</a> |
+  <a href="game.html"class="plain-link">自製遊戲區</a> |
+  <a href="main.html" class="plain-link">原來的樣子(那邊因該不會更新了)</a> |
+  <a href="https://zw7305549-commits.github.io/first_game/" target="_blank"  class="plain-link">前往網頁射擊遊戲遊戲</a>
+</nav>
+  <h1>筆記下載區</h1>
+  <p>檔案區 如果你真的很閒也可以提供意見或發給我筆記:> 電子信箱是zw7305549@gmail.com 絕對是因為懶得搞上傳筆記而不是還不會:D</p>
+  <div class="history-section">
+  <p>歷史筆記</p>
+  </div>
+  <button class="history-btn" onclick="window.location.href='word/🏺 台灣史前時代.docx'">下載台灣史前時代筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🌊 荷西與鄭氏時期.docx'">下載荷西與鄭氏時期筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🏯 清治台灣.docx'">下載清治台灣筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🇯🇵 日治時期.docx'">下載日治時期筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🇹🇼 戰後台灣.docx'">下載戰後台灣筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🏛 商周至隋唐.docx'">下載商周至隋唐筆記</button>
+  <button class="history-btn" onclick="window.location.href='word/🌏 宋元明清.docx'">下載宋元明清筆記</button>
+  <div class="公民">
+  <p>公民筆記</p>
+  </div>
+  <button class="公民筆記" onclick="window.location.href='word/📘 第一章：公民身分、人性尊嚴與性別.docx'">下載公民身分、人性尊嚴與性別筆記</button>
+  <button class="公民筆記" onclick="window.location.href='word/📘 第二章：家庭、學校與部落.docx'">下載家庭、學校與部落筆記</button>
+  <button class="公民筆記" onclick="window.location.href='word/📘 第三章：文化與社會規範、結社.docx'">下載文化與社會規範、結社筆記</button>
+  <button class="公民筆記" onclick="window.location.href='word/📘 第四章：公平主義與社會安全.docx'">下載公平主義與社會安全筆記</button>
+  <div class="地科筆記">
+  <p>地科筆記</p>
+  </div>
+  <button class="地科" onclick="window.location.href='word/地球層圖與水的分布'">下載地球層圖與水的分布筆記</button>
+  <button class="地科" onclick="window.location.href='word/地表作用與地貌變動'">下載地表作用與地貌變動筆記</button>
+  </script>
+</body>
+</html>

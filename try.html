@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>測試</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #ecd44e;
+    }
+
+    h1 {
+      color: #000000;
+    }
+
+    button {
+      padding: 20px 40px; /* 適中大小 */
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      background-color: #b82121;
+      color: rgb(254, 254, 254);
+      margin: 10px; /* 按鈕間距 */
+    }
+    .plain-link {
+    color: inherit;          /* 跟內文同色 */
+    text-decoration: none;   /* 移除底線 */
+    cursor: pointer;         /* 滑鼠變手指，可提示可點 */
+  }
+    /* 內文 */
+    
+    /* 個別樣式 */
+    /* button */
+    /* 新增這段讓圖片外層置中 */
+    div {
+      text-align: center;
+    }
+
+    img {
+      margin-top: 20px;
+      max-width: 80%;
+      border-radius: 10px;
+      display: none; /* 預設不顯示 */
+    }
+
+    .img-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+  <a href="index.html" class="plain-link">首頁</a> |
+  <a href="word.html" class="plain-link">筆記下載區</a> |
+  <a href="game.html"class="plain-link">自製遊戲區</a> |
+  <a href="main.html" class="plain-link">原來的樣子(那邊因該不會更新了)</a> |
+  <a href="https://zw7305549-commits.github.io/first_game/" target="_blank"  class="plain-link">前往網頁射擊遊戲遊戲</a>
+</nav>
+  <h1>測試區</h1>
+  <button id="clickMe">G</button>
+  <button id="PIG">PIG</button>
+  <button id="湯姆瑞斗(匿名)要求新增">湯姆瑞斗(匿名)要求新增</button>
+  <!-- 顯示圖片的地方 -->
+  <div class="img-center">
+    <img id="pigImage" src="img/pig.jpg" alt="小豬">
+  </div>
+
+  <script>
+    // G 按鈕
+    const buttonG = document.getElementById('clickMe');
+    buttonG.addEventListener('click', () => {
+      alert('you are a pig:)');
+    });
+
+    // PIG 按鈕
+    const buttonPIG = document.getElementById('PIG');
+    const pigImg = document.getElementById('pigImage');
+
+    buttonPIG.addEventListener('click', () => {
+      // 切換圖片顯示/隱藏
+      if (pigImg.style.display === 'block') {
+        pigImg.style.display = 'none';
+      } else {
+        pigImg.style.display = 'block';
+      }
+    });
+    // 湯姆瑞斗(匿名)要求新增 按鈕
+    const buttonTom = document.getElementById('湯姆瑞斗(匿名)要求新增');
+    buttonTom.addEventListener('click', () => {
+      alert('你已經忘記你是gay');
+    });
+  </script>
+</body>
+</html>
