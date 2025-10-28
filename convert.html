@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>二進制與十進制互換工具</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      background-color: #ecd44e;
+      text-align: center;
+      margin-top: 100px;
+    }
+    input {
+      padding: 8px;
+      width: 200px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 8px 12px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>二進制 ↔ 十進制 互換工具</h1>
+
+  <input id="inputNumber" type="text" placeholder="輸入數字">
+  <br>
+
+  <button onclick="toBinary()">十進制 → 二進制</button>
+  <button onclick="toDecimal()">二進制 → 十進制</button>
+
+  <div id="output"></div>
+
+  <script>
+    function toBinary() {
+      const input = document.getElementById("inputNumber").value;
+      const n = parseInt(input, 10);
+      if (isNaN(n)) {
+        document.getElementById("output").innerText = "請輸入正確的十進制數字！";
+        return;
+      }
+      const binary = n.toString(2);
+      document.getElementById("output").innerText = `${n} 的二進制是 ${binary}`;
+    }
+
+    function toDecimal() {
+      const input = document.getElementById("inputNumber").value;
+      if (!/^[01]+$/.test(input)) {
+        document.getElementById("output").innerText = "請輸入正確的二進制數字！（只能包含 0 和 1）";
+        return;
+      }
+      const decimal = parseInt(input, 2);
+      document.getElementById("output").innerText = `${input} 的十進制是 ${decimal}`;
+    }
+  </script>
+</body>
+</html>
