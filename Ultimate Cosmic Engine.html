@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Cosmic Engine</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+  }
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="cosmic"></canvas>
+
+<script>
+const canvas = document.getElementById("cosmic");
+const ctx = canvas.getContext("2d");
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+// ----------------------
+// ⭐ 1. 星空背景
+// ----------------------
+let stars = [];
+for (let i = 0; i < 800; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 1.8 + 0.2,
+    alpha: Math.random(),
+    speed: Math.random() * 0.3 + 0.05
+  });
+}
+
+// ----------------------
+// 🌫 2. 星雲噪音雲氣
+// ----------------------
+let nebula = [];
+for (let i = 0; i < 60; i++) {
+  nebula.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 200 + 100,
+    a: Math.random() * 0.08 + 0.02,
+    hue: Math.random() * 250 + 100
+  });
+}
+
+// ----------------------
+// 💥 3. 粒子（超新星 & 星系 & 物理）
+// ----------------------
+let particles = [];
+
+// 超新星爆炸
+function supernova(x, y) {
+  for (let i = 0; i < 400; i++) {
+    let angle = Math.random() * Math.PI * 2;
+    let speed = Math.random() * 5 + 2;
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: Math.random() * 120 + 60,
+      size: Math.random() * 2 + 1,
+      hue: Math.random() * 40 + 20
+    });
+  }
+}
+
+// 星系旋渦（中心點）
+function galaxy(cx, cy) {
+  for (let i = 0; i < 600; i++) {
+    let angle = Math.random() * Math.PI * 2;
+    let dist = Math.random() * 200 + 20;
+
+    particles.push({
+      x: cx + Math.cos(angle) * dist,
+      y: cy + Math.sin(angle) * dist,
+      angle: angle,
+      dist: dist,
+      swirl: true,
+      size: Math.random() * 2 + 0.5,
+      hue: 200 + Math.random() * 60,
+      life: 9999
+    });
+  }
+}
+
+// 黑洞吸力（滑鼠長按）
+let blackHole = null;
+
+// ----------------------
+// ⚡ 4. 光速跳躍（Hyperspace）
+// ----------------------
+let hyperspace = false;
+
+// ----------------------
+// 🎬 主動畫迴圈
+// ----------------------
+function draw() {
+  // 若啟動 hyperspace → 速度線背景
+  if (hyperspace) {
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    stars.forEach(s => {
+      s.y += s.speed * 20;
+      if (s.y > canvas.height) {
+        s.y = 0;
+        s.x = Math.random() * canvas.width;
+      }
+
+      ctx.fillStyle = "white";
+      ctx.fillRect(s.x, s.y, 2, 10);
+    });
+  } else {
+    // 正常宇宙背景
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 星雲
+    nebula.forEach(n => {
+      let g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r);
+      g.addColorStop(0, `hsla(${n.hue},80%,60%,${n.a})`);
+      g.addColorStop(1, "transparent");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // 星空
+    stars.forEach(s => {
+      s.alpha += (Math.random() - 0.5) * 0.05;
+      if (s.alpha < 0.1) s.alpha = 0.1;
+      if (s.alpha > 1) s.alpha = 1;
+
+      ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fill();
+    });
+  }
+
+  // 粒子處理
+  particles.forEach((p, i) => {
+    // 星系旋渦模式
+    if (p.swirl) {
+      p.angle += 0.01;
+      p.dist *= 0.999;
+      p.x += Math.cos(p.angle) * 0.8;
+      p.y += Math.sin(p.angle) * 0.8;
+    } else {
+      // 普通粒子（超新星）
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life--;
+    }
+
+    // 黑洞吸力
+    if (blackHole) {
+      let dx = blackHole.x - p.x;
+      let dy = blackHole.y - p.y;
+      let d = Math.hypot(dx, dy);
+
+      if (d < 200) {
+        p.vx += dx / d * 0.5;
+        p.vy += dy / d * 0.5;
+      }
+      if (d < 20) particles.splice(i, 1);
+    }
+
+    // 繪製粒子
+    ctx.fillStyle = `hsla(${p.hue},100%,60%,0.9)`;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 壽命到了移除
+    if (p.life <= 0) particles.splice(i, 1);
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+// ----------------------
+// 🎮 事件控制
+// ----------------------
+canvas.addEventListener("click", (e) => {
+  supernova(e.clientX, e.clientY);
+});
+
+// 滑鼠長按 = 黑洞
+canvas.addEventListener("mousedown", (e) => {
+  blackHole = { x: e.clientX, y: e.clientY };
+});
+canvas.addEventListener("mouseup", () => {
+  blackHole = null;
+});
+
+// 按空白鍵 = 光速跳躍
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") hyperspace = true;
+});
+document.addEventListener("keyup", (e) => {
+  if (e.code === "Space") hyperspace = false;
+});
+
+// 視窗縮放
+window.addEventListener("resize", () => {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+});
+</script>
+
+</body>
+</html>
