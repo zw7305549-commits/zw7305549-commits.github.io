@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Time Möbius – Full Screen Side View</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #050814;
+    overflow: hidden;
+  }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+
+<canvas id="c"></canvas>
+
+<script>
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+
+let cx, cy, baseSize;
+let t = 0, breathe = 0;
+let scaleFactor = 2.8;
+let rotationY = 0;
+let isDragging = false, lastX = 0;
+
+const COUNT = 1400;
+const LOOP = Math.PI * 2;
+const TILT_X = Math.PI / 19.5;
+
+// ======================
+// ⭐ 星空背景
+// ======================
+const stars = [];
+const STAR_COUNT = 700;
+
+function initStars() {
+  stars.length = 0;
+  for (let i = 0; i < STAR_COUNT; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.6 + 0.2,
+      a: Math.random(),
+      flicker: Math.random() * 0.02 + 0.005
+    });
+  }
+}
+
+function drawStars() {
+  for (const s of stars) {
+    s.a += (Math.random() - 0.5) * s.flicker;
+    s.a = Math.max(0.1, Math.min(1, s.a));
+
+    ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+// ======================
+// 視窗 / 互動
+// ======================
+window.addEventListener("resize", resize);
+window.addEventListener("wheel", e => {
+  scaleFactor += e.deltaY * -0.001;
+  scaleFactor = Math.max(0.2, Math.min(5, scaleFactor));
+});
+
+canvas.addEventListener("mousedown", e => {
+  isDragging = true;
+  lastX = e.clientX;
+});
+canvas.addEventListener("mouseup", () => isDragging = false);
+canvas.addEventListener("mouseleave", () => isDragging = false);
+canvas.addEventListener("mousemove", e => {
+  if (isDragging) {
+    rotationY += (e.clientX - lastX) * 0.01;
+    lastX = e.clientX;
+  }
+});
+
+resize();
+
+function resize() {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+  cx = canvas.width / 2;
+  cy = canvas.height / 2;
+  baseSize = Math.min(canvas.width, canvas.height);
+  initStars();
+}
+
+// ======================
+// 3D 投影
+// ======================
+function project3D(x, y, z) {
+  const depth = baseSize * 1.2;
+  const scale = depth / (depth + z);
+  return { x: x * scale, y: y * scale, scale };
+}
+
+// ======================
+// 🎬 主動畫
+// ======================
+function draw() {
+  requestAnimationFrame(draw);
+
+  // 深藍拖影背景
+  ctx.fillStyle = "rgba(6,10,24,0.18)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // 星空
+  drawStars();
+
+  // 時間推進
+  t += 0.00009;
+  if (t > LOOP) t -= LOOP;
+
+  // 呼吸
+  breathe += 0.002;
+  const breathScale = 1 + Math.sin(breathe) * 0.02;
+
+  const morph = (1 - Math.cos(t)) * 0.5;
+  const flow = Math.sin(t);
+
+  const R = baseSize * 0.28 * scaleFactor;
+  const thickness = baseSize * 0.01 * scaleFactor;
+  const particleSize = baseSize * 0.002 * scaleFactor;
+
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(breathScale, breathScale);
+
+  for (let i = 0; i < COUNT; i++) {
+    const u = (i / COUNT) * LOOP + t * flow;
+    const v = Math.sin(i) * thickness;
+
+    const twist = morph * Math.cos(u / 2);
+    let x = (R + v * twist) * Math.cos(u);
+    let y = v * Math.sin(u / 2);
+    let z = (R + v * twist) * Math.sin(u);
+
+    // X 軸側面傾斜
+    const y2 = y * Math.cos(TILT_X) - z * Math.sin(TILT_X);
+    const z2 = y * Math.sin(TILT_X) + z * Math.cos(TILT_X);
+
+    // Y 軸旋轉（滑鼠）
+    const x2 = x * Math.cos(rotationY) - z2 * Math.sin(rotationY);
+    const z3 = x * Math.sin(rotationY) + z2 * Math.cos(rotationY);
+
+    const p = project3D(x2, y2, z3);
+
+    const face = Math.cos(u / 2);
+    const alpha = face > 0 ? 0.85 : 0.28;
+
+    ctx.fillStyle = `rgba(180,200,255,${alpha})`;
+    ctx.fillRect(p.x, p.y, particleSize * p.scale, particleSize * p.scale);
+  }
+
+  ctx.restore();
+}
+
+draw();
+</script>
+
+</body>
+</html>
