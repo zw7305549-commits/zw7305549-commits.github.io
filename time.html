@@ -22,13 +22,13 @@ const ctx = canvas.getContext("2d");
 
 let cx, cy, baseSize;
 let t = 0, breathe = 0;
-let scaleFactor = 1.5; // 初始幾乎填滿螢幕
+let scaleFactor = 2.8; // 初始幾乎填滿螢幕
 let rotationY = 0;
 let isDragging = false, lastX = 0;
 
 const COUNT = 1400;
 const LOOP = Math.PI * 2;
-const TILT_X = Math.PI / 10.0; // 側面角度
+const TILT_X = Math.PI / 19.5; // 側面角度
 
 window.addEventListener("resize", resize);
 window.addEventListener("wheel", e => {
