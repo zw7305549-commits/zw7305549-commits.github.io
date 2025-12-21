@@ -13,8 +13,8 @@ try:
             for j in range(2*i + 1):
                 line += random.choice(symbols)
             print(" " * (height - i - 1) + line)
-        for _ in range(2):
-            print(" " * (height - 2) + "|||")  # 樹幹
+        for _ in range(3):
+            print(" " * (height - 2) + "▊▊▊")  # 樹幹
         time.sleep(0.05)  # 閃爍間隔
 except KeyboardInterrupt:
     pass  # 按下 Ctrl+C 停止程式
